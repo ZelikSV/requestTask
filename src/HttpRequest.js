@@ -17,13 +17,12 @@ function generateURL(constructorURL, methodURL, parameters) {
 }
 
 class HttpRequest {
-  // get request options({ baseUrl, headers })
   constructor({ baseUrl, headers }) {
     this.baseUrl = baseUrl;
     this.headers = headers;
   }
 
-  // eslint-disable-next-line class-methods-use-this
+
   get(url, config) {
     const xml = new XMLHttpRequest();
     const { headers, downloadLine, transformResponse, params, responseType = 'text' } = config;
@@ -48,9 +47,30 @@ class HttpRequest {
       xml.send();
     });
   }
-  // eslint-disable-next-line class-methods-use-this
+
   post(url, config) {
-  // Your code
+    const xml = new XMLHttpRequest();
+    const { headers, transformResponse, data, downloadLine, responseType = 'text' } = config;
+    const finishURL = generateURL(this.baseUrl, url);
+
+    return new Promise((resolve, reject) => {
+      xml.open('POST', finishURL);
+      xml.responseType = responseType;
+
+      applyRequestHeaders(xml, headers);
+      applyRequestHeaders(xml, this.headers);
+
+      xml.upload.onprogress = event => downloadLine(event);
+
+      xml.onreadystatechange = () => {
+        if (xml.readyState === 4 && xml.status === 200) {
+          resolve(xml.response);
+        } else if (xml.status !== 200) {
+          reject(xml.status);
+        }
+      };
+      xml.send(data);
+    });
   }
 }
 
