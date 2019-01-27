@@ -23,6 +23,7 @@ class HttpRequest {
     this.headers = headers;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   get(url, config) {
     const xml = new XMLHttpRequest();
     const { headers, downloadLine, transformResponse, params, responseType = 'text' } = config;
@@ -47,10 +48,9 @@ class HttpRequest {
       xml.send();
     });
   }
-
-
+  // eslint-disable-next-line class-methods-use-this
   post(url, config) {
-    // your code
+  // Your code
   }
 }
 
