@@ -12,7 +12,6 @@ function generateURL(constructorURL, methodURL, parameters) {
   for (const key in parameters) {
     url.searchParams.set(key, parameters[key]);
   }
-
   return url;
 }
 
