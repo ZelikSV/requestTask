@@ -5,12 +5,14 @@ class HttpRequest {
     this.headers = headers;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   get(url, config) {
-
+  // Your code
   }
 
+  // eslint-disable-next-line class-methods-use-this
   post(url, config) {
-
+  // Your code
   }
 }
 
