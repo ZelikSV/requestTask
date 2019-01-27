@@ -1,0 +1,237 @@
+
+/*-----------------css-reset------------------ */
+	/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #fff;
+    font-weight: 400;
+    background: url('../bg') no-repeat 50% 0% / cover;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.app-wrapper{
+    width: 500px;
+    margin: 0 auto;
+    padding: 150px 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+form{
+    width: 100%;
+    display: flex;
+    margin-bottom: 50px;
+   
+}
+.progress{
+    width: 100%;
+}
+
+.download-icon{
+    font-size: 25px;
+    transition: .3s linear;
+}
+.download-icon:hover {
+color: rgb(224, 222, 222);
+cursor: pointer;
+}
+.download-icon:hover svg path{
+    fill: rgb(224, 222, 222);
+    }
+.download-icon svg{
+    width: 35px;
+    height: 35px;
+}
+svg path{
+    fill: #fff;
+}
+.download-field-wrap{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 55px;
+    margin-left: 55px;
+}
+input[type='file']{
+    display: none;
+}
+.search-field{
+    width: 300px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.7);
+    margin-right: 10px;
+    color: #fff;
+}
+.search-field:focus{
+    outline: none;
+    color: #fff;
+    background: rgba(0, 0, 0, .7);
+    box-shadow: 0 0 4px 1px rgb(224, 222, 222);
+    border-color: #fff;
+}
+.btn{
+    width: 120px;
+    background: rgba(0, 0, 0, .3);
+    border: 1px solid rgb(224, 222, 222);
+    color: #fff; 
+    transition: .3s linear;
+}
+.btn:hover{
+    background: rgba(0, 0, 0, .5);
+    border: 1px solid #fff;
+    color: #fff; 
+    box-shadow: 0 0 4px 1px rgb(224, 222, 222);
+}
+.btn:focus{
+    background: rgba(255, 255, 255, 0.801);
+    border: 1px solid #000;
+    color: #000; 
+    box-shadow: 0 0 4px 1px rgb(0, 0, 0);
+}
+.progress{
+    height: 10px;
+    background: transparent;
+}
+.progress-bar{
+    background-color: #8a2121;
+}
+.download-img-wrap{
+    width: 100%;
+    margin: 0 auto;
+}
+.download-img-wrap img{
+    width: 100%;
+    height: auto;
+}
