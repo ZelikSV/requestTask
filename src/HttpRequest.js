@@ -1,3 +1,21 @@
+const applyRequestHeaders = (xml, headers) => {
+  if (typeof headers === 'object') {
+    Object.keys(headers).forEach(key => {
+      xml.setRequestHeader(key, headers[key]);
+    });
+  }
+};
+
+function generateURL(constructorURL, methodURL, parameters) {
+  const url = new URL(constructorURL + methodURL);
+
+  for (const key in parameters) {
+    url.searchParams.set(key, parameters[key]);
+  }
+
+  return url;
+}
+
 class HttpRequest {
   // get request options({ baseUrl, headers })
   constructor({ baseUrl, headers }) {
@@ -6,11 +24,33 @@ class HttpRequest {
   }
 
   get(url, config) {
+    const xml = new XMLHttpRequest();
+    const { headers, downloadLine, transformResponse, params, responseType = 'text' } = config;
+    const finishURL = generateURL(this.baseUrl, url, params);
 
+    return new Promise((resolve, reject) => {
+      xml.open('GET', finishURL);
+      xml.responseType = responseType;
+
+      applyRequestHeaders(xml, headers);
+      applyRequestHeaders(xml, this.headers);
+
+      xml.onprogress = event => downloadLine(event);
+
+      xml.onreadystatechange = () => {
+        if (xml.readyState === 4 && xml.status === 200) {
+          resolve(xml.response);
+        } else if (xml.status !== 200) {
+          reject(xml.status);
+        }
+      };
+      xml.send();
+    });
   }
 
-  post(url, config) {
 
+  post(url, config) {
+    // your code
   }
 }
 
