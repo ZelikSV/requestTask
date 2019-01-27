@@ -21,3 +21,19 @@ document.getElementById('uploadForm').onsubmit = function(e) {
   const xhr = new HttpRequest({ baseUrl: 'http://localhost:8000' });
   xhr.post('/upload', { downloadLine, data: form });
 };
+
+document.getElementById('downloadForm').onsubmit = function(e) {
+  e.preventDefault();
+
+  // eslint-disable-next-line no-undef
+  const xhr = new HttpRequest({ baseUrl: 'http://localhost:8000' });
+  xhr.get(`/files/${e.target[0].value}`, { downloadLine, responseType: 'blob' })
+    .then(data => {
+      const imgSrc = window.URL.createObjectURL(data, { type: 'image/jpeg' });
+      document.getElementById('download-img').src = imgSrc;
+    });
+};
+
+document.getElementById('download').onchange = function(e) {
+  document.querySelector('.download-icon span').innerHTML = e.target.value.replace(/.*\\/, '');
+};
