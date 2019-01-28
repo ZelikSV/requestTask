@@ -4,7 +4,6 @@ const app = express();
 
 app.use('/form', express.static(__dirname + '/index.html'));
 app.use('/style', express.static(__dirname + '/src/css/style.css'));
-app.use('/index.js', express.static(__dirname + '/src/index.js'));
 app.use('/progress.js', express.static(__dirname + '/src/progress.js'));
 app.use('/HttpRequest.js', express.static(__dirname + '/src/HttpRequest.js'));
 app.use('/bg', express.static(__dirname + '/src/img/bg.jpg'));
