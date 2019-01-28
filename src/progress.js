@@ -24,7 +24,6 @@ document.getElementById('uploadForm').onsubmit = function(e) {
 
 document.getElementById('downloadForm').onsubmit = function(e) {
   e.preventDefault();
-
   // eslint-disable-next-line no-undef
   const xhr = new HttpRequest({ baseUrl: 'http://localhost:8000' });
   xhr.get(`/files/${e.target[0].value}`, { downloadLine, responseType: 'blob' })
