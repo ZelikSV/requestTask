@@ -32,18 +32,18 @@
           <span>Choice your file</span>
         </p>
       </label>
-      <input class="btn" type='submit' value='Upload' />
+      <input class="btn btn-upload" type='submit' value='Upload' disabled/>
     </form>
     <form id='downloadForm' class="d-flex download-form">
       <input class="form-control search-field" type="text" name="sampleFile" autocomplete="off" />
-      <input class="btn" type='submit' value='Download' />
+      <input class="btn btn-download" type='submit' value='Download' disabled />
     </form>
     <div class="download-img-wrap">
       <img id="download-img">
     </div>
   </app>
 
-
+  <script src="/index.js"></script>
   <script src="/HttpRequest.js"></script>
   <script src="/progress.js"></script>
 </body>

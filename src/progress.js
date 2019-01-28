@@ -34,6 +34,3 @@ document.getElementById('downloadForm').onsubmit = function(e) {
     });
 };
 
-document.getElementById('download').onchange = function(e) {
-  document.querySelector('.download-icon span').innerHTML = e.target.value.replace(/.*\\/, '');
-};
