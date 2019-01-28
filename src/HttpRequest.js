@@ -7,7 +7,7 @@ const applyRequestHeaders = (xml, headers) => {
 };
 
 function generateURL(constructorURL, methodURL, parameters) {
-  const url = new URL(constructorURL + methodURL);
+  const url = new URL(methodURL, constructorURL);
 
   for (const key in parameters) {
     url.searchParams.set(key, parameters[key]);
@@ -24,7 +24,7 @@ class HttpRequest {
 
   get(url, config) {
     const xml = new XMLHttpRequest();
-    const { headers, downloadLine, transformResponse, params, responseType = 'text' } = config;
+    const { headers, downloadLine, params, responseType = 'json' } = config;
     const finishURL = generateURL(this.baseUrl, url, params);
 
     return new Promise((resolve, reject) => {
@@ -49,7 +49,7 @@ class HttpRequest {
 
   post(url, config) {
     const xml = new XMLHttpRequest();
-    const { headers, transformResponse, data, downloadLine, responseType = 'text' } = config;
+    const { headers, data, downloadLine, responseType = 'json' } = config;
     const finishURL = generateURL(this.baseUrl, url);
 
     return new Promise((resolve, reject) => {
