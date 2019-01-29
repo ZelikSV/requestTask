@@ -232,6 +232,31 @@ input[type='file']{
 .download-img-wrap{
     width: 100%;
     margin: 0 auto;
+    position: relative;
+    display: none;
+}
+.download-img-wrap span{
+    position: absolute;
+    color: #ff0000;
+    border: 1px solid #ff0000;
+    border-radius: 50%;
+    padding: 0px 10px;
+    font-size: 35px;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    display: none;
+    transform: scale(.7);
+    transition: .3s linear;
+}
+.download-img-wrap.active{
+    display: block;
+}
+.download-img-wrap.active span{
+    display: block;
+}
+.download-img-wrap span:hover{
+    transform: scale(1);
 }
 .download-img-wrap img{
     width: 100%;
