@@ -29,7 +29,7 @@ function changeInputFileValue(elem, titleValue) {
     if (elem.value !== '') {
       titleValue.innerHTML = elem.value.replace(/.*\\/, '');
     } else {
-      titleValue.innerHTML = 'Choice your file';
+      titleValue.innerHTML = 'Choose your file';
     }
   });
 }
