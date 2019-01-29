@@ -1,3 +1,4 @@
+
 const progress = document.getElementById('progress');
 const inputUpload = document.getElementById('download');
 const uploadLabel = document.querySelector('.download-icon span');
@@ -7,12 +8,7 @@ const btnDownload = document.querySelector('.btn-download');
 const listOpenBtn = document.querySelector('.open-list-btn');
 const listWrapper = document.querySelector('.download-list-wrap');
 const closeBtnList = document.querySelector('.download-list-wrap span');
-
-function showAndHiddenList(elem) {
-  elem.addEventListener('click', function() {
-    listWrapper.classList.toggle('active');
-  });
-}
+const listFilesContainer = document.querySelector('.download-list');
 
 function changeStatusBtn(elem, btn) {
   elem.addEventListener('input', function() {
@@ -33,16 +29,16 @@ function changeInputFileValue(elem, titleValue) {
     }
   });
 }
+
 function downloadLine(event) {
-  let percentage = Math.round(event.loaded / event.total * 100);
+  const percentage = Math.round(event.loaded / event.total * 100);
   progress.style.opacity = 1;
   progress.style.width = `${percentage}%`;
-  document.title = `${document.title} ${percentage} %`;
+  document.title = `${percentage}%`;
   setTimeout(() => {
     document.title = 'Download Master';
     progress.style.opacity = 0;
     progress.style.width = '0%';
-    percentage = 0;
   }, 1500);
 }
 
@@ -63,6 +59,36 @@ function downloadFile(data) {
   document.body.removeChild(fileLink);
 }
 
+function clearFilesList() {
+  Array.from(listFilesContainer.children).forEach(item => {
+    listFilesContainer.removeChild(item);
+  });
+}
+
+function addElementsToFilesList(files) {
+  files.forEach(item => {
+    const fileElem = document.createElement('li');
+    fileElem.innerHTML = item;
+    listFilesContainer.appendChild(fileElem);
+  });
+}
+
+function filesList() {
+  // eslint-disable-next-line no-undef
+  const r = new HttpRequest({ baseUrl: 'http://localhost:8000/' });
+  r.get('/list', { downloadLine, responseType: 'json' })
+    .then(data => {
+      clearFilesList();
+      addElementsToFilesList(data);
+    });
+}
+
+function showAndHiddenList(elem) {
+  elem.addEventListener('click', function() {
+    listWrapper.classList.toggle('active');
+  });
+}
+
 document.getElementById('uploadForm').onsubmit = function(e) {
   e.preventDefault();
   const form = new FormData();
@@ -73,6 +99,7 @@ document.getElementById('uploadForm').onsubmit = function(e) {
   const xhr = new HttpRequest({ baseUrl: 'http://localhost:8000' });
   xhr.post('/upload', { downloadLine, data: form });
   btnUpload.disabled = true;
+  filesList();
 };
 
 document.getElementById('downloadForm').onsubmit = function(e) {
@@ -86,6 +113,9 @@ document.getElementById('downloadForm').onsubmit = function(e) {
       } else {
         downloadFile(data);
       }
+    })
+    .catch(error => {
+      throw new Error(error);
     });
   btnDownload.disabled = true;
 };
