@@ -34,7 +34,7 @@ function changeInputFileValue(elem, titleValue) {
   });
 }
 function downloadLine(event) {
-  const percentage = Math.round(event.loaded / event.total * 100);
+  let percentage = Math.round(event.loaded / event.total * 100);
   progress.style.opacity = 1;
   progress.style.width = `${percentage}%`;
   document.title = `${document.title} ${percentage} %`;
@@ -42,6 +42,7 @@ function downloadLine(event) {
     document.title = 'Download Master';
     progress.style.opacity = 0;
     progress.style.width = '0%';
+    percentage = 0;
   }, 1500);
 }
 
