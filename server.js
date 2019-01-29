@@ -5,8 +5,15 @@ const fs = require('fs');
 
 app.use('/form', express.static(`${__dirname  }/index.html`));
 app.use('/style', express.static(`${__dirname  }/src/css/style.css`));
-app.use('/progress.js', express.static(`${__dirname  }/src/progress.js`));
+app.use('/helpers.js', express.static(`${__dirname  }/src/helpers.js`));
 app.use('/HttpRequest.js', express.static(`${__dirname  }/src/HttpRequest.js`));
+app.use('/progress.js', express.static(`${__dirname  }/src/progress.js`));
+app.use('/upload.js', express.static(`${__dirname  }/src/upload.js`));
+app.use('/download.js', express.static(`${__dirname  }/src/download.js`));
+app.use('/inputsChanger.js', express.static(`${__dirname  }/src/inputsChanger.js`));
+app.use('/imgViewer.js', express.static(`${__dirname  }/src/imgViewer.js`));
+
+app.use('/fileList.js', express.static(`${__dirname  }/src/fileList.js`));
 app.use('/bg', express.static(`${__dirname  }/src/img/bg.jpg`));
 app.use('/logo', express.static(`${__dirname  }/src/img/logo.png`));
 app.use('/files', express.static(`${__dirname  }/uploads`));
