@@ -163,6 +163,9 @@ form{
 
 .download-icon{
     font-size: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     transition: .3s linear;
 }
 .download-icon:hover {
