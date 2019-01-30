@@ -4,11 +4,6 @@ const listWrapper = document.querySelector('.download-list-wrap');
 const listFilesContainer = document.querySelector('.download-list');
 const closeBtnList = document.querySelector('.download-list-wrap span');
 
-function showAndHiddenList(elem) {
-  elem.addEventListener('click', function() {
-    listWrapper.classList.toggle('active');
-  });
-}
 
 function addElementsToFilesList(files) {
   files.forEach(item => {
@@ -26,11 +21,18 @@ function clearFilesList() {
 
 function filesList() {
   const r = new HttpRequest({ baseUrl: 'http://localhost:8000/' });
-  r.get('/list', { downloadLine, responseType: 'json' })
+  r.get('/list', { responseType: 'json' })
     .then(data => {
       clearFilesList();
       addElementsToFilesList(data);
     });
+}
+
+function showAndHiddenList(elem) {
+  elem.addEventListener('click', function() {
+    listWrapper.classList.toggle('active');
+    filesList();
+  });
 }
 
 showAndHiddenList(listOpenBtn);

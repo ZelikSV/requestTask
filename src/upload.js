@@ -8,5 +8,4 @@ document.getElementById('uploadForm').onsubmit = function(e) {
   const xhr = new HttpRequest({ baseUrl: 'http://localhost:8000' });
   xhr.post('/upload', { downloadLine, data: form });
   document.querySelector('.btn-upload').disabled = true;
-  filesList();
 };
