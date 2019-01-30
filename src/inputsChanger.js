@@ -16,7 +16,7 @@ function changeStatusBtn(elem, btn) {
 }
 
 function changeInputFileValue(elem, titleValue) {
-  elem.addEventListener('change', function() {
+  elem.addEventListener('input', function() {
     if (elem.value !== '') {
       titleValue.innerHTML = elem.value.replace(/.*\\/, '');
     } else {
@@ -24,6 +24,10 @@ function changeInputFileValue(elem, titleValue) {
     }
   });
 }
+// function make btn upload enabled after click for choose same files in field
+uploadLabel.addEventListener('click', function() {
+  btnUpload.disabled = false;
+});
 
 changeStatusBtn(inputUpload, btnUpload);
 changeStatusBtn(inputDownload, btnDownload);
