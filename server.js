@@ -5,7 +5,6 @@ const fs = require('fs');
 
 app.use('/form', express.static(`${__dirname  }/index.html`));
 app.use('/style', express.static(`${__dirname  }/src/css/style.css`));
-app.use('/helpers.js', express.static(`${__dirname  }/src/helpers.js`));
 app.use('/HttpRequest.js', express.static(`${__dirname  }/src/HttpRequest.js`));
 app.use('/progress.js', express.static(`${__dirname  }/src/progress.js`));
 app.use('/upload.js', express.static(`${__dirname  }/src/upload.js`));

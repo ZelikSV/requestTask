@@ -1,31 +1,56 @@
-/* eslint-disable no-undef */
 class HttpRequest {
   constructor({ baseUrl, headers }) {
     this.baseUrl = baseUrl;
     this.headers = headers;
   }
 
+  static generateURL(urlString, baseURLString, parameters) {
+    const url = new URL(urlString, baseURLString);
 
-  get(url, config) {
+    for (const key in parameters) {
+      url.searchParams.set(key, parameters[key]);
+    }
+    return url;
+  }
+
+  __request(url, method, config) {
     const xml = new XMLHttpRequest();
-    const { headers, downloadLine, params, responseType = 'json' } = config;
-    const finishURL = generateURL(this.baseUrl, url, params);
+    const { headers, downloadLine, params, responseType = 'json', data } = config;
+    const finishURL = HttpRequest.generateURL(url, this.baseUrl, params);
     const headersObj = { ...headers, ...this.headers };
 
     return new Promise((resolve, reject) => {
-      requestHelper({ xml, method: 'GET', finishURL, headersObj, responseType, downloadLine, undefined, resolve, reject });
+      xml.open(method, finishURL);
+      xml.responseType = responseType;
+
+      Object.entries(headersObj).forEach(([key, value]) => {
+        xml.setRequestHeader(key, value);
+      });
+
+      xml.onprogress = downloadLine;
+
+      xml.onreadystatechange = () => {
+        if (xml.readyState === 4 && xml.status === 200) {
+          resolve(xml.response);
+        } else if (xml.status !== 200) {
+          reject(xml.status);
+        }
+      };
+
+      if (data) {
+        xml.send(data);
+      } else {
+        xml.send();
+      }
     });
   }
 
-  post(url, config) {
-    const xml = new XMLHttpRequest();
-    const { headers, data, downloadLine, responseType = 'json' } = config;
-    const finishURL = generateURL(this.baseUrl, url);
-    const headersObj = { ...headers, ...this.headers };
+  get(url, config) {
+    return this.__request(url, 'GET', config);
+  }
 
-    return new Promise((resolve, reject) => {
-      requestHelper({ xml, method: 'POST', finishURL, headersObj, responseType, downloadLine, data, resolve, reject });
-    });
+  post(url, config) {
+    return this.__request(url, 'POST', config);
   }
 }
 
