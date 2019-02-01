@@ -14,14 +14,14 @@
 </head>
 
 <body>
-  <div class="progress">
-    <div class="progress-bar" id="progress" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+  <div class="progress download-progress-wrap">
+    <div class="progress-bar progress-bar-download" id="progress" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
       aria-valuemax="100"></div>
   </div>
   <app class="app-wrapper">
-    <form id='uploadForm' encType="multipart/form-data">
+    <form class='upload-form' encType="multipart/form-data">
       <label class="download-field-wrap">
-        <input type="file" name="sampleFile" id="download" />
+        <input class="upload-input" type="file" name="sampleFile"/>
         <p class="download-icon">
           <svg x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
             xml:space="preserve" width="512px" height="512px">
@@ -34,7 +34,13 @@
       </label>
       <input class="btn btn-upload" type='submit' value='Upload' disabled/>
     </form>
-    <form id='downloadForm' class="d-flex download-form">
+    <div class="progress upload-progress-wrap">
+      <div class="progress-bar progress-bar-upload" id="progress2" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+        aria-valuemax="100">
+        <span class="percentage-progress"></span>
+      </div>
+    </div>
+    <form class='download-form' class="d-flex download-form">
       <input class="form-control search-field" type="text" name="sampleFile" autocomplete="off" />
       <input class="btn btn-download" type='submit' value='Download' disabled />
     </form>
@@ -44,7 +50,6 @@
     </div>
     <div class="download-list-wrap">
       <ul class="download-list">
-        <p>Your list is empty</p>
       </ul>
       <span>&times;</span>
       <svg version="1.1" class="open-list-btn" x="0px" y="0px" viewBox="0 0 438.891 438.891" style="enable-background:new 0 0 438.891 438.891;" xml:space="preserve" width="512px" height="512px">
@@ -57,17 +62,15 @@
           <path  class='lines-list' d="M329.16,339.626H208.997c-5.771,0-10.449,4.678-10.449,10.449s4.678,10.449,10.449,10.449H329.16     c5.771,0,10.449-4.678,10.449-10.449S334.931,339.626,329.16,339.626z" />
     </svg>
     </div>
-
+    <div class="info-block">
+      
+    </div>
   </app>
-
-  <script src="/helpers.js"></script>
+  
   <script src="/HttpRequest.js"></script>
   <script src="/progress.js"></script>
-  <script src="/upload.js"></script>
-  <script src="/download.js"></script>
-  <script src="/inputsChanger.js"></script>
   <script src="/fileList.js"></script>
-  <script src="/imgViewer.js"></script>
+  <script src="/main.js"></script>
 </body>
 
 </html>
