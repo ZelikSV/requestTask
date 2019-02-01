@@ -1,39 +1,46 @@
-/* eslint-disable no-undef */
-const listOpenBtn = document.querySelector('.open-list-btn');
-const listWrapper = document.querySelector('.download-list-wrap');
-const listFilesContainer = document.querySelector('.download-list');
-const closeBtnList = document.querySelector('.download-list-wrap span');
+/* global  HttpRequest */
+(function() {
+  const request = new HttpRequest({ baseUrl: 'http://localhost:8000/' });
 
+  function render(listFiles) {
+    if (listFiles.length === 0) {
+      return '<li>Your list is empty</li>';
+    } else {
+      return `${listFiles.map(item => `<li>${item}</li>`).join('\n')}`;
+    }
+  }
 
-function addElementsToFilesList(files) {
-  files.forEach(item => {
-    const fileElem = document.createElement('li');
-    fileElem.innerHTML = item;
-    listFilesContainer.appendChild(fileElem);
-  });
-}
+  class FileList {
+    constructor(nodeEl) {
+      if (!nodeEl) {
+        throw new Error('you are missing parents element');
+      }
+      this.parent = nodeEl;
+      this.data = [];
+      this.init();
+    }
 
-function clearFilesList() {
-  Array.from(listFilesContainer.children).forEach(item => {
-    listFilesContainer.removeChild(item);
-  });
-}
+    init() {
+      this.load()
+        .then(() => this.render());
+    }
 
-function filesList() {
-  const r = new HttpRequest({ baseUrl: 'http://localhost:8000/' });
-  r.get('/list', { responseType: 'json' })
-    .then(data => {
-      clearFilesList();
-      addElementsToFilesList(data);
-    });
-}
+    clickListener(element, cb) {
+      this.parent.addEventListener('click', function(e) {
+        element.value = e.target.innerHTML;
+        cb();
+      });
+    }
 
-function showAndHiddenList(elem) {
-  elem.addEventListener('click', function() {
-    listWrapper.classList.toggle('active');
-    filesList();
-  });
-}
+    load() {
+      return request.get('/list', { responseType: 'json' })
+        .then(data => (this.data = data));
+    }
 
-showAndHiddenList(listOpenBtn);
-showAndHiddenList(closeBtnList);
+    render() {
+      this.parent.innerHTML = render(this.data);
+    }
+  }
+  window.FileList = FileList;
+}());
+
