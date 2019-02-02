@@ -1,29 +1,24 @@
-**Getting started**
+<h1 align="center"> 👋🏼 Welcome My Friend</h1>
+<br/>
+<p>
+    🚀 This repository has My Own implementation of method fetch and small application for download & upload your files
+</p>
+<br/>
+When you cloned this repository, you must install package modules npm
 
- In ```src``` folder you have 2 files
+  ```
+  npm i
+  ```
+  or
 
-1. Based on ```XMLHttpRequest``` create own implementation of ```fetch```
+  ```
+  yarn install
+  ```
+Then you can start server
 
-2. after go to second part of this task, see description below
+  - ```npm start``` 
+  
+and open browser on localhost:8000
 
- **to start server**
-
-  - ```npm i```
-
-  - ```npm start``` and open browser on localhost:8000
-
-Using your own implementation follow next steps
-
-1. Add progress bar to upload file to server with graphic indication and percent(10% ... 21% ... 50 ... 100%)
-
-2. Add progress bar to download file from server with only graphic indication(on top of page with width 100% and height 2-3px)
-
-3. if file was downloaded - if it is an image - show it on center of page, else download file to your local machine
-
-PS: remember about SOLID and other principes - KISS, DRY(google it if you don't know)
-
-*Extra task
-
- 1. In file ```server.js``` create edpoint ```/list```, read list of files in dir(see - [fs.readdir](https://nodejs.org/api/fs.html#fs_fs_readdir_path_options_callback) )
- and send to webApp like endpoint ```ping``` but use method ```GET```.
- After, add logic to your app for loading list of exist file on server
+Where you can see this this small application
+<img src= "https://drive.google.com/open?id=1k9XRNVGq0X7ZndZ0yDYPz2OxPkYiuXbj" />
