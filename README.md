@@ -21,4 +21,4 @@ Then you can start server
 and open browser on localhost:8000
 
 Where you can see this this small application
-<img src= "https://drive.google.com/open?id=1k9XRNVGq0X7ZndZ0yDYPz2OxPkYiuXbj" />
+<img src= "https://github.com/ZelikSV/ZelikSv.github.io/blob/master/1.png" />
