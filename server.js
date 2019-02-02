@@ -6,10 +6,10 @@ const fs = require('fs');
 app.use('/form', express.static(`${__dirname  }/index.html`));
 app.use('/style', express.static(`${__dirname  }/src/css/style.css`));
 app.use('/HttpRequest.js', express.static(`${__dirname  }/src/HttpRequest.js`));
-app.use('/progress.js', express.static(`${__dirname  }/src/progress.js`));
-app.use('/main.js', express.static(`${__dirname  }/src/main.js`));
-
 app.use('/fileList.js', express.static(`${__dirname  }/src/fileList.js`));
+app.use('/progress.js', express.static(`${__dirname  }/src/progress.js`));
+app.use('/utils.js', express.static(`${__dirname  }/src/utils.js`));
+app.use('/main.js', express.static(`${__dirname  }/src/main.js`));
 app.use('/bg', express.static(`${__dirname  }/public/img/bg.jpg`));
 app.use('/logo', express.static(`${__dirname  }/public/img/logo.png`));
 app.use('/files', express.static(`${__dirname  }/uploads`));

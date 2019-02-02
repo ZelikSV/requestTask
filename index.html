@@ -15,7 +15,7 @@
 
 <body>
   <div class="progress download-progress-wrap">
-    <div class="progress-bar progress-bar-download" id="progress" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+    <div class="progress-bar progress-bar-download" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
       aria-valuemax="100"></div>
   </div>
   <app class="app-wrapper">
@@ -35,7 +35,7 @@
       <input class="btn btn-upload" type='submit' value='Upload' disabled/>
     </form>
     <div class="progress upload-progress-wrap">
-      <div class="progress-bar progress-bar-upload" id="progress2" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+      <div class="progress-bar progress-bar-upload" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
         aria-valuemax="100">
         <span class="percentage-progress"></span>
       </div>
@@ -45,7 +45,7 @@
       <input class="btn btn-download" type='submit' value='Download' disabled />
     </form>
     <div class="download-img-wrap">
-      <img id="download-img">
+      <img class="download-img">
       <span>&times;</span>
     </div>
     <div class="download-list-wrap">
@@ -70,6 +70,7 @@
   <script src="/HttpRequest.js"></script>
   <script src="/progress.js"></script>
   <script src="/fileList.js"></script>
+  <script src="/utils.js"></script>
   <script src="/main.js"></script>
 </body>
 

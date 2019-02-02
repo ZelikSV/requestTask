@@ -300,6 +300,9 @@ input[type='file']{
 .download-list{
     width: 70%;
     opacity: 0;
+    height: 0;
+    transform-origin: 0 0 0;
+    transform: rotateX(-90deg);
     transition: .3s linear;
 }
 .download-list li{
@@ -320,6 +323,8 @@ opacity: 1;
 border-radius: 5px;
 padding: 10px 5px;
 background: rgba(0, 0, 0, .7);
+height: inherit;
+transform: rotateX(0deg);
 }
 .download-list-wrap span{
     display: none;
@@ -353,47 +358,3 @@ background: rgba(0, 0, 0, .7);
 .download-list-wrap svg:hover path{
    fill: rgb(224, 222, 222);
 }
-
-
-/* ===================================== */
-/* =============----info-block---========== */
-.info-block{
-    position: fixed;
-    opacity: 0;
-    top: 50px;
-    left: 50px;
-    width: 150px;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, .5);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    border: 2px solid #ff0000;
-    transition: .3s linear;
-}
-.info-block.active{
-    opacity: 1;
-}
-.info-block .info-block-title{
-    color: #ff0000;
-    font-size: 20px;
-    line-height: 35px;
-    border-bottom: 1px solid #000;
-    width: 100%;
-    text-align: center;
-}
-.info-block-title h2{
-    display: inline-block;
-}
-.info-block-icon{
-    display: inline-block;
-}
-.info-block-icon.hidden{
-    display: none;
-}
-.info-block p{
-    color: #fff;
-    padding: 10px 5px;
-}
-/* ===================================== */
