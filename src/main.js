@@ -34,8 +34,9 @@ document.querySelector('.upload-form').onsubmit = function(e) {
 
 document.querySelector('.download-form').onsubmit = function(e) {
   e.preventDefault();
-  const xhr = new HttpRequest({ baseUrl: 'http://localhost:8000' });
-  xhr.get(`/files/${e.target[0].value}`, { downloadLine: onDownloadProgress, responseType: 'blob' })
+  const { value } = e.target[0];
+
+  xhr.get(`/files/${value}`, { downloadLine: onDownloadProgress, responseType: 'blob' })
     .then(data => {
       if (data.type === 'image/jpeg') {
         showImgOnPage(data, imgWrapper);
@@ -43,9 +44,7 @@ document.querySelector('.download-form').onsubmit = function(e) {
         savedFile(data);
       }
     })
-    .catch(error => {
-      throw new Error(error);
-    });
+    .catch(error => error);
   btnDownload.disabled = true;
   inputDownload.value = '';
 };
