@@ -1,4 +1,4 @@
-/* global  HttpRequest, onUploadProgress, onDownloadProgress, xhr */
+/* global  HttpRequest, onUploadProgress, onDownloadProgress, request */
 const inputUpload = document.querySelector('.upload-input');
 const inputDownload = document.querySelector('.search-field');
 const btnDownload = document.querySelector('.btn-download');
@@ -60,7 +60,7 @@ document.querySelector('.upload-form').onsubmit = function(e) {
   const data = new FormData();
 
   data.append('sampleFile', files[0]);
-  xhr.post('/upload', { downloadLine: onUploadProgress, data }).then(() => myFileList.init());
+  request.post('/upload', { downloadLine: onUploadProgress, data }).then(() => myFileList.init());
   btnUpload.disabled = true;
 };
 
@@ -68,7 +68,7 @@ document.querySelector('.download-form').onsubmit = function(e) {
   e.preventDefault();
   const { value } = e.target[0];
 
-  xhr.get(`/files/${value}`, { downloadLine: onDownloadProgress, responseType: 'blob' })
+  request.get(`/files/${value}`, { downloadLine: onDownloadProgress, responseType: 'blob' })
     .then(data => {
       if (data.type === 'image/jpeg') {
         showImgOnPage(data, imgWrapper);
