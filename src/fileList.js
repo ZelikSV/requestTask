@@ -42,5 +42,6 @@
     }
   }
   window.FileList = FileList;
+  window.request = request;
 }());
 
