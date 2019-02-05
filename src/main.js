@@ -24,11 +24,12 @@ imgWrapper.querySelector('span').addEventListener('click', function() {
 
 document.querySelector('.upload-form').onsubmit = function(e) {
   e.preventDefault();
+  const { files } = e.target.sampleFile;
   const data = new FormData();
-  data.append('sampleFile', e.target.sampleFile.files[0]);
-  xhr.post('/upload', { downloadLine: onUploadProgress, data });
+
+  data.append('sampleFile', files[0]);
+  xhr.post('/upload', { downloadLine: onUploadProgress, data }).then(() => myFileList.init());
   btnUpload.disabled = true;
-  myFileList.init();
 };
 
 document.querySelector('.download-form').onsubmit = function(e) {
