@@ -25,10 +25,9 @@
         .then(() => this.render());
     }
 
-    clickListener(element, cb) {
+    clickListener(cb) {
       this.parent.addEventListener('click', function(e) {
-        element.value = e.target.innerHTML;
-        cb();
+        cb(e);
       });
     }
 

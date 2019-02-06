@@ -10,7 +10,15 @@ const listContainer = document.querySelector('.download-list');
 const imgWrapper = document.querySelector('.download-img-wrap');
 const myFileList = new FileList(listContainer);
 
-myFileList.clickListener(inputDownload, () => (btnDownload.disabled = false));
+
+function checkClickOnFileFromList(event) {
+  const elem = event.target;
+
+  if (elem.tagName === 'LI') {
+    inputDownload.value = elem.innerHTML;
+    btnDownload.disabled = false;
+  }
+}
 
 function showImgOnPage(data, elImgWrap) {
   const imgSrc = window.URL.createObjectURL(data, { type: `${data.type}` });
@@ -67,7 +75,6 @@ document.querySelector('.upload-form').onsubmit = function(e) {
 document.querySelector('.download-form').onsubmit = function(e) {
   e.preventDefault();
   const { value } = e.target[0];
-
   request.get(`/files/${value}`, { downloadLine: onDownloadProgress, responseType: 'blob' })
     .then(data => {
       if (data.type === 'image/jpeg') {
@@ -87,6 +94,7 @@ uploadLabel.addEventListener('click', function() {
 });
 
 listBtn.onclick = showAndHiddenList;
+myFileList.clickListener(checkClickOnFileFromList);
 changeStatusBtn(inputUpload, btnUpload);
 changeStatusBtn(inputDownload, btnDownload);
 changeInputFileValue(inputUpload, uploadLabel);
